@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: workout-app
+#    env: node
+    runtime: node
+    buildCommand: 'npm install && npm run build'
+    startCommand: 'npm start'
+    envVars:
+      - key: MONGODB_URI
+        value: ${MONGODB_URI}
+      - key: JWT_SECRET
+        value: ${JWT_SECRET}
+    plan: free
