@@ -1,4 +1,3 @@
-// src/models/User.ts
 import { Schema, model, Document } from 'mongoose';
 import bcrypt from 'bcrypt';
 
@@ -14,7 +13,6 @@ const userSchema = new Schema<IUser>({
   password: { type: String, required: true }
 });
 
-// Хешируем пароль перед сохранением пользователя
 userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) {
     return next();
@@ -24,7 +22,6 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
-// Метод для сравнения паролей
 userSchema.methods.comparePassword = function (candidatePassword: string) {
   return bcrypt.compare(candidatePassword, this.password);
 };

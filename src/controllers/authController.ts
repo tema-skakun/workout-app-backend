@@ -1,4 +1,3 @@
-// src/controllers/authController.ts
 import { Request, Response } from 'express';
 import { User } from '../models/User';
 import jwt from 'jsonwebtoken';
@@ -10,7 +9,6 @@ export const register = async (req: Request, res: Response) => {
     await user.save();
 
     const jwtSecret = process.env.JWT_SECRET;
-    // console.log('JWT_SECRET in authController 13:', jwtSecret);//
     if (!jwtSecret) {
       throw new Error('JWT_SECRET is not defined');
     }
@@ -31,7 +29,6 @@ export const login = async (req: Request, res: Response) => {
     }
 
     const jwtSecret = process.env.JWT_SECRET;
-    // console.log('JWT_SECRET in authController 34:', jwtSecret);//
     if (!jwtSecret) {
       throw new Error('JWT_SECRET is not defined');
     }

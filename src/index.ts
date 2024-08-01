@@ -1,4 +1,3 @@
-// src/index.ts
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -10,7 +9,6 @@ import workoutRoutes from './routes/workoutRoutes';
 import { errorHandler } from './middleware/errorMiddleware';
 import {JwtPayload} from "./types/jwt";
 
-// Расширение интерфейса Request
 declare global {
   namespace Express {
     interface Request {

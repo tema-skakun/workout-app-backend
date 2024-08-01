@@ -1,8 +1,14 @@
 import { Request, Response } from 'express';
 import { Workout } from '../models/Workout';
 import { JwtPayload } from "../types/jwt";
+import { validationResult } from 'express-validator';
 
 export const createWorkout = async (req: Request<{}, any, any, any, JwtPayload>, res: Response) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   const { name, exercises, warmupTime, exerciseTime, restTime, rounds, restBetweenRounds } = req.body;
 
   if (!req.user || !req.user.id) {
@@ -54,6 +60,11 @@ export const getWorkout = async (req: Request, res: Response) => {
 export const updateWorkout = async (req: Request, res: Response) => {
   const { id } = req.params;
   const { name, exercises, warmupTime, exerciseTime, restTime, rounds, restBetweenRounds } = req.body;
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
 
   if (!req.user || !req.user.id) {
     return res.status(401).json({ message: 'Unauthorized' });

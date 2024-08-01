@@ -8,11 +8,11 @@ interface IWorkout extends Document {
   user: Schema.Types.ObjectId;
   name: string;
   exercises: IExercise[];
-  warmupTime: number; // Время разминки в секундах
-  exerciseTime: number; // Время упражнения в секундах
-  restTime: number; // Время отдыха между упражнениями в секундах
-  rounds: number; // Количество раундов
-  restBetweenRounds: number; // Время отдыха между раундами в секундах
+  warmupTime: number;
+  exerciseTime: number;
+  restTime: number;
+  rounds: number;
+  restBetweenRounds: number;
 }
 
 const exerciseSchema = new Schema<IExercise>({
